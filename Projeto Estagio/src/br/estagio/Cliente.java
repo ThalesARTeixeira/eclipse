@@ -21,20 +21,20 @@ public class Cliente{
 	public Cliente() {
 		listaCliente = new ArrayList<>();
 	}
-	//metodo get and set
+	//metodo getter and setter
 	public int getId_cliente() {
 		return id_cliente;
 	}
 	public void setId_cliente(int id_cliente) {
 		Scanner entrada = new Scanner(System.in);
-		if(id_cliente == 0) {
-			System.out.println("O id do cliente nao pode ser nulo(0).");
-			System.out.println("Cadastrar id do cliente novamente: ");
-			this.id_cliente = entrada.nextInt();
-			
-		}else {
+		while(id_cliente <= 0) {
+			System.out.println("O ID do cliente nao pode ser nulo(0)!");
+			System.out.println("Cadastrar ID do cliente novamente: ");
+			//recebe o dado correto para ser salvo
+			id_cliente = entrada.nextInt();
 			this.id_cliente = id_cliente;
 		}
+		this.id_cliente = id_cliente;
 	}
 	public String getRazaoSocial() {
 		return razaoSocial;
@@ -70,17 +70,12 @@ public class Cliente{
 	}
 	//metodo para cadastro de Cliente
 	public void cadastrarCliente() {
-		int num = 1;
 		
-		//Cliente cliente = new Cliente();
 		//entrada de dados
 		Scanner entrada = new Scanner(System.in);
 		System.out.println("Cadastrar id do cliente: ");
 		id_cliente = entrada.nextInt();
-		System.out.println("id cliente atual" + id_cliente);
 		setId_cliente(id_cliente);
-		System.out.println("id cliente alterado" + id_cliente);
-		
 		System.out.println("Informe razao social do cliente: ");
 		razaoSocial = entrada.next();
 		System.out.println("Informe a fantasia: ");
@@ -89,9 +84,21 @@ public class Cliente{
 		endereco = entrada.next();
 		
 		//criar novo objeto
-		Cliente objCliente = new Cliente(id_cliente, razaoSocial,fantasia,endereco);
-		listaCliente.add(objCliente);
+		Cliente objCliente = new Cliente(id_cliente, razaoSocial,fantasia,endereco); 
 		
+		//verifica se o ID do cliente ja existe
+		boolean existe = existeCliente(id_cliente);
+		while(existe != false) {
+			System.out.println("O ID do cliente ja esta sendo usado!");
+			System.out.println("Por favor digite outro ID para o cliente ser salvo:");
+			id_cliente = entrada.nextInt();
+			objCliente.setId_cliente(id_cliente);
+			existe = existeCliente(id_cliente);
+			
+		}
+
+		listaCliente.add(objCliente);
+		System.out.println("O ID do cliente foi salvo com sucesso!");
 	}
 	//cadastrando mais de um cliente
 	public void cadastrarClientes(int quantidade_cliente) {
@@ -143,5 +150,17 @@ public class Cliente{
 			}
 		}
 		return encontrado;
+	}
+	public boolean existeCliente(int id_cliente) {
+		boolean existe = false;
+		for (int i = 0; i < listaCliente.size(); i++) {
+			//cria um objeto cliente
+			Cliente objCliente =(Cliente) listaCliente.get(i);
+			if (id_cliente == objCliente.getId_cliente()) {
+				existe = true;
+				break;
+			}
+		}
+		return existe;
 	}
 }

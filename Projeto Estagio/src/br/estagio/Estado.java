@@ -5,7 +5,7 @@ public class Estado {
 	private String nome;
 	private String uf;
 	
-	//metodo get and set
+	//metodo gettter and setter
 	public int getId_estado() {
 		return id_estado;
 	}

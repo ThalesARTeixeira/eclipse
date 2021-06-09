@@ -26,6 +26,9 @@ public class Principal {
 			switch(menu) {
 				case 1:
 					//cadastrar clientes
+					System.out.println("CADASTRAR CLIENTE ");
+					System.out.println(" ");
+					System.out.println(" ");
 					System.out.println("Quantos clientes deseja cadastrar? ");
 					int quantidade_clientes = entrada.nextInt();
 					objCliente.cadastrarClientes(quantidade_clientes);	
@@ -34,6 +37,9 @@ public class Principal {
 					
 				case 2:
 					//editar cliente
+					System.out.println("EDITAR CLIENTE ");
+					System.out.println(" ");
+					System.out.println(" ");
 					System.out.println("Digite o ID do cliente para editar os dados:");
 					int idEditar = entrada.nextInt();
 					boolean editar = objCliente.editarCliente(idEditar);
@@ -47,12 +53,18 @@ public class Principal {
 					
 				case 3:
 					//listar clientes
+					System.out.println("LISTAGEM DE CLIENTE ");
+					System.out.println(" ");
+					System.out.println(" ");
 					objCliente.exibirCliente();
 					System.out.println("|_________________________________________________|");
 					break;
 					
 				case 4:
 					//excluir cliente 
+					System.out.println("EXCLUIR CLIENTE ");
+					System.out.println(" ");
+					System.out.println(" ");
 					System.out.println("Para excluir digite o Id do cliente:");
 					int idExcluir = entrada.nextInt();
 					boolean excluir = objCliente.excluirCliente(idExcluir);

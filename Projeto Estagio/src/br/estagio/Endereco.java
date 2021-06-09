@@ -10,7 +10,7 @@ public class Endereco {
 	private String estado;
 	private String bairro;
 	
-	//metodo get and set
+	//metodo getter and setter
 	public int getId_endereco() {
 		return id_endereco;
 	}
