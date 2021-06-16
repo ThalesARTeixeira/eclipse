@@ -1,21 +1,26 @@
 package br.estagio;
 
+import java.util.Scanner;
+
+
 public class Endereco {
 	//atributos
-	private int id_endereco;
+	private int idEndereco;
 	private String logradouro;
 	private int numero;
 	private int quadra;
 	private int lote;
-	private String estado;
+	private Estado estado;
 	private String bairro;
-	
+
 	//metodo getter and setter
-	public int getId_endereco() {
-		return id_endereco;
+	public int getIdEndereco() {
+		
+		return idEndereco;
 	}
-	public void setId_endereco(int id_endereco) {
-		this.id_endereco = id_endereco;
+	public void setIdEndereco(int idEndereco) {
+		
+		this.idEndereco = idEndereco;
 	}
 	public String getLogradouro() {
 		return logradouro;
@@ -41,10 +46,11 @@ public class Endereco {
 	public void setLote(int lote) {
 		this.lote = lote;
 	}
-	public String getEstado() {
+	public Estado getEstado() {
+		this.estado = this.estado == null ? new Estado() : this.estado;
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 	public String getBairro() {
@@ -55,8 +61,8 @@ public class Endereco {
 	}
 	
 	//construtor
-	public Endereco(int id_endereco, String logradouro, int numero, int quadra, int lote, String estado, String bairro) {
-		this.id_endereco = id_endereco;
+	public Endereco(int idEndereco, String logradouro, int numero, int quadra, int lote, Estado estado, String bairro) {
+		this.idEndereco = idEndereco;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.quadra = quadra;
@@ -64,6 +70,28 @@ public class Endereco {
 		this.estado = estado;
 		this.bairro = bairro;
 		
+	}
+	
+	public Endereco() {
+		
+	}
+	//metodo para cadastrar endereco
+	public void cadastrarEndereco() {
+		Scanner entrada = new Scanner(System.in);
+		System.out.println("|__________________ENDERECO_____________________|");
+		System.out.println("Informe o id do endereco: ");
+		idEndereco = entrada.nextInt();
+		System.out.println("Informe o logradouro: " );
+		logradouro = entrada.next();
+		System.out.println("Informe o numero: ");
+		numero = entrada.nextInt();
+		System.out.println("Informe o quadra: " );
+		quadra = entrada.nextInt();
+		System.out.println("Informe o lote: " );
+		lote = entrada.nextInt();
+		System.out.println("Informe o bairro: " );
+		bairro = entrada.next();
+	
 	}
 	
 	

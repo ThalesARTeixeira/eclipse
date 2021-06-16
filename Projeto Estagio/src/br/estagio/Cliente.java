@@ -11,10 +11,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 public class Cliente{
 	//atributos
-	private int id_cliente;
+	private int idCliente;
 	private String razaoSocial;
 	private String fantasia;
-	private String endereco;
+	private Endereco endereco;
 	private ArrayList<Cliente> listaCliente;
 	
 	//contrutor1
@@ -22,19 +22,19 @@ public class Cliente{
 		listaCliente = new ArrayList<>();
 	}
 	//metodo getter and setter
-	public int getId_cliente() {
-		return id_cliente;
+	public int getIdCliente() {
+		return idCliente;
 	}
-	public void setId_cliente(int id_cliente) {
+	public void setIdCliente(int idCliente) {
 		Scanner entrada = new Scanner(System.in);
-		while(id_cliente <= 0) {
+		while(idCliente <= 0) {
 			System.out.println("O ID do cliente nao pode ser nulo(0)!");
 			System.out.println("Cadastrar ID do cliente novamente: ");
 			//recebe o dado correto para ser salvo
-			id_cliente = entrada.nextInt();
-			this.id_cliente = id_cliente;
+			idCliente = entrada.nextInt();
+			this.idCliente = idCliente;
 		}
-		this.id_cliente = id_cliente;
+		this.idCliente = idCliente;
 	}
 	public String getRazaoSocial() {
 		return razaoSocial;
@@ -48,10 +48,11 @@ public class Cliente{
 	public void setFantasia(String fantasia) {
 		this.fantasia = fantasia;
 	}
-	public String getEndereco() {
+	public Endereco getEndereco() {
+		
 		return endereco;
 	}
-	public void setEndereco(String endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 	public ArrayList<Cliente> getListaCliente() {
@@ -61,8 +62,8 @@ public class Cliente{
 		this.listaCliente = listaCliente;
 	}
 	//construtor2
-	public Cliente(int id_cliente, String razaoSocial, String fantasia, String endereco) {
-		this.id_cliente = id_cliente;
+	public Cliente(int idCliente, String razaoSocial, String fantasia, Endereco endereco) {
+		this.idCliente = idCliente;
 		this.razaoSocial = razaoSocial;
 		this.fantasia = fantasia;
 		this.endereco = endereco;
@@ -70,33 +71,35 @@ public class Cliente{
 	}
 	//metodo para cadastro de Cliente
 	public void cadastrarCliente() {
-		
+		//criar objeto Endereco
+		Endereco objEndereco = new Endereco();
 		//entrada de dados
 		Scanner entrada = new Scanner(System.in);
+		System.out.println("|__________________CLIENTE_____________________|");
 		System.out.println("Cadastrar id do cliente: ");
-		id_cliente = entrada.nextInt();
-		setId_cliente(id_cliente);
+		idCliente = entrada.nextInt();
+		setIdCliente(idCliente);
 		System.out.println("Informe razao social do cliente: ");
 		razaoSocial = entrada.next();
 		System.out.println("Informe a fantasia: ");
 		fantasia = entrada.next();
-		System.out.println("Informe o endereco: ");
-		endereco = entrada.next();
+		System.out.println();
 		
+		objEndereco.cadastrarEndereco();
 		//criar novo objeto
-		Cliente objCliente = new Cliente(id_cliente, razaoSocial,fantasia,endereco); 
+		Cliente objCliente = new Cliente(idCliente, razaoSocial, fantasia, objEndereco); 
 		
 		//verifica se o ID do cliente ja existe
-		boolean existe = existeCliente(id_cliente);
+		boolean existe = existeCliente(idCliente);
 		while(existe != false) {
 			System.out.println("O ID do cliente ja esta sendo usado!");
 			System.out.println("Por favor digite outro ID para o cliente ser salvo:");
-			id_cliente = entrada.nextInt();
-			objCliente.setId_cliente(id_cliente);
-			existe = existeCliente(id_cliente);
+			idCliente = entrada.nextInt();
+			objCliente.setIdCliente(idCliente);
+			existe = existeCliente(idCliente);
 			
 		}
-
+		
 		listaCliente.add(objCliente);
 		System.out.println("O ID do cliente foi salvo com sucesso!");
 	}
@@ -112,7 +115,7 @@ public class Cliente{
 		 boolean encontrado = false;
 		 for(int i = 0; i < listaCliente.size(); i++) {
 			 Cliente objCliente = (Cliente) listaCliente.get(i);
-			 if(idCliente == objCliente.getId_cliente()) {
+			 if(idCliente == objCliente.getIdCliente()) {
 				 excluirCliente(idCliente);
 				 cadastrarCliente();
 				 encontrado = true;
@@ -130,10 +133,19 @@ public class Cliente{
 		}else {
 			for(int i = 0; i < listaCliente.size(); i++) {
 				Cliente objCliente =  listaCliente.get(i);
-				System.out.println("Id do cliente:" + objCliente.getId_cliente());
+				System.out.println("Id do cliente:" + objCliente.getIdCliente());
 				System.out.println("Razao social do cliente:" + objCliente.getRazaoSocial());
 				System.out.println("Fantasia do cliente:" + objCliente.getFantasia());
-				System.out.println("Endereco do cliente:" + objCliente.getEndereco());
+				System.out.println("Id Endereco do cliente:" + objCliente.getEndereco().getIdEndereco());
+				System.out.println("Logradouro do cliente:" + objCliente.getEndereco().getLogradouro());
+				System.out.println("Numero do cliente:" + objCliente.getEndereco().getNumero());
+				System.out.println("Quadra do cliente:" + objCliente.getEndereco().getQuadra());
+				System.out.println("Lote do cliente:" + objCliente.getEndereco().getQuadra());
+				System.out.println("Bairro do cliente:" + objCliente.getEndereco().getBairro());
+				System.out.println("ID Estado do cliente:" + objCliente.getEndereco().getEstado().getIdEstado());
+				System.out.println("Nome da cidade do cliente:" + objCliente.getEndereco().getEstado().getNome());
+				System.out.println("UF do cliente:" + objCliente.getEndereco().getEstado().getUf());
+
 			}
 		}
 			
@@ -143,7 +155,7 @@ public class Cliente{
 		boolean encontrado = false;
 		for (int i = 0; i < listaCliente.size(); i++) {
 			Cliente objCliente = (Cliente) listaCliente.get(i);
-			if (IdCliente == objCliente.getId_cliente()) {
+			if (IdCliente == objCliente.getIdCliente()) {
 				listaCliente.remove(objCliente);
 				encontrado = true;
 				break;
@@ -151,12 +163,12 @@ public class Cliente{
 		}
 		return encontrado;
 	}
-	public boolean existeCliente(int id_cliente) {
+	public boolean existeCliente(int idCliente) {
 		boolean existe = false;
 		for (int i = 0; i < listaCliente.size(); i++) {
 			//cria um objeto cliente
 			Cliente objCliente =(Cliente) listaCliente.get(i);
-			if (id_cliente == objCliente.getId_cliente()) {
+			if (idCliente == objCliente.getIdCliente()) {
 				existe = true;
 				break;
 			}

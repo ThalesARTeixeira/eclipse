@@ -99,7 +99,7 @@ public class Produto{
 			System.out.println("Informe o desconto do produto:");
 			desconto = entrada.nextInt();
 			//criar novo objeto
-			Produto objProduto = new Produto(id_produto, descr_produto,marca, valor, desconto); 
+			Produto objProduto = new Produto(id_produto, descr_produto, marca, valor, desconto); 
 			
 			//verifica se o ID do cliente ja existe
 			boolean existe = existeProduto(id_produto);
@@ -154,10 +154,11 @@ public class Produto{
 			}else {
 				for(int i = 0; i < listaProduto.size(); i++) {
 					Produto objProduto =  listaProduto.get(i);
-					System.out.println("Id do produto:" + objProduto.getId_produto());
-					System.out.println("Descricao do produto:" + objProduto.getDescr_produto());
+					System.out.println("Id do produto: " + objProduto.getId_produto());
+					System.out.println("Descricao do produto: " + objProduto.getDescr_produto());
+					System.out.println("Marca do produto: " + objProduto.getMarca());
 					System.out.println("Valor do produto: R$" + objProduto.getValor());
-					System.out.println("Desconto do produto:" + objProduto.getDesconto() + "%");
+					System.out.println("Desconto do produto: " + objProduto.getDesconto() + "%");
 				}
 			}
 				

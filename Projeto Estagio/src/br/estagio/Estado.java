@@ -1,16 +1,19 @@
 package br.estagio;
 
+import java.util.Scanner;
+
 public class Estado {
-	private int id_estado;
+	//atributos
+	private int idEstado;
 	private String nome;
 	private String uf;
 	
 	//metodo gettter and setter
-	public int getId_estado() {
-		return id_estado;
+	public int getIdEstado() {
+		return idEstado;
 	}
-	public void setId_estado(int id_estado) {
-		this.id_estado = id_estado;
+	public void setIdEstado(int idEstado) {
+		this.idEstado = idEstado;
 	}
 	public String getNome() {
 		return nome;
@@ -25,16 +28,27 @@ public class Estado {
 		this.uf = uf;
 	}
 	//construtor
-	public Estado(int id_estado, String nome, String uf) {
-		this.id_estado = id_estado;
+	public Estado(int idEstado, String nome, String uf) {
+		this.idEstado = idEstado;
 		this.nome = nome;
 		this.uf = uf;
 		
 	}
-	//metodo para calcular o valor do frete
-	//public void calcularFrete(String GO, String MG, String TO) {
-	
+	public Estado() {
 		
+	}
+	//metodo para cadastrar estado
+	public void cadastrarEstado() {
+		Scanner entrada = new Scanner(System.in);
+		
+		System.out.println("|__________________ESTADO_____________________|");
+		System.out.println("Informe o id do estado: ");
+		idEstado = entrada.nextInt();
+		System.out.println("Informe o nome: " );
+		nome = entrada.next();
+		System.out.println("Informe a UF: ");
+		uf = entrada.next();
+
+	}
 	
-	//}
 }
